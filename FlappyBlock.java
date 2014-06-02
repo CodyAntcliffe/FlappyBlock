@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-//Need collision detection, Refreshing of the pipes/pipe object
+//Need collision detection
 
 import java.util.Random;
 
@@ -15,17 +15,24 @@ import javax.swing.*;
 public class FlappyBlock extends JPanel implements MouseListener {
 	
 	//frame dimensions
-	int height=600;//frame height
-	int width=800;//frame width
-	Pipes P=new Pipes();
-	Pipes[] PY=new Pipes[5];
-	//dimensions for flappy
-	int blockyX=300;
-	int blockyY=200;
+	int windowHeight=600;//frame height
+	int windowWidth=800;//frame width
+	
+	//Various colors used
 	Color bgColor=Color.CYAN;
 	Color blockyColor=Color.RED;
 	Color pipeColor=Color.GREEN;
-	int pipeX=width-100;
+	
+	Pipes P=new Pipes(); //TEST TO REMOVE
+	Pipes P2=new Pipes();
+	Pipes[] PY=new Pipes[100];//holds our instance of pipes
+	
+	//Starting location for flappy
+	int blockyX=300;
+	int blockyY=200;
+
+	int blockyDimensions=15;
+	int pipeX=windowWidth-100;
 	int pipeY=0;
 	
 	flyUp up=new flyUp();
@@ -36,19 +43,28 @@ public class FlappyBlock extends JPanel implements MouseListener {
 	
 	
 	public FlappyBlock() {
+		for(int i=0; i<100;i++){
+			PY[i]=new Pipes();
+			PY[i].topPipeX=(windowWidth-100)+(i*250);
+			PY[i].bottomPipeX=PY[i].topPipeX;
+		}
 		setDoubleBuffered(true);
 		addMouseListener(this);
 		setBackground(bgColor);
 		setFocusable(true);
-		setPreferredSize(new Dimension(width,height));
+		setPreferredSize(new Dimension(windowWidth,windowHeight));
+		//setPipeX(PY);
 	}
 	
+	public void drawPipes(Pipes[] PZ){
+		
+	}
 	//causes flappy to ascend
 	public class flyUp implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			if(timerKeep<14){
-			P.topPipeX-=4;	
-			P.bottomPipeX=P.topPipeX;
+				for(int i=0;i<100;i++)
+					PY[i].movePipes();
 			blockyY-=6;
 			timerKeep++;
 			repaint();}
@@ -58,42 +74,52 @@ public class FlappyBlock extends JPanel implements MouseListener {
 				return;}
 		}
 	}
-	
 	//Causes flappy to descend
-	public class flyDown implements ActionListener{
-		public void actionPerformed(ActionEvent event){
-			if(timerKeep>=10){
-			P.topPipeX-=4;
-			P.bottomPipeX=P.topPipeX;
-			blockyY+=6;
-			timerKeep++;
-			repaint();}
-			if(timerKeep==0){
-				flyDownTimer.stop();
-				timerKeep=0;
-				return;}
+		public class flyDown implements ActionListener{
+			public void actionPerformed(ActionEvent event){
+				if(timerKeep>=10){
+					for(int i=0;i<100;i++)
+						PY[i].movePipes();
+				blockyY+=6;
+				timerKeep++;
+				repaint();}
+				if(timerKeep==0){
+					flyDownTimer.stop();
+					timerKeep=0;
+					return;}
+			}
 		}
-	}
-	private int genRandomNum(){
-		Random ran = new Random();
-		int x = ran.nextInt(150) +50 ;
-		return x;
-	}
-	
 	private class Pipes{
-		int topPipeX=width-100;
+		int topPipeX=windowWidth-100;
 		int topPipeY=0;
-		int topPipeHeight=genRandomNum();//controls how tall the top pipe will be
+		int topPipeHeight=getRandomPipeHeight();//controls how tall the top pipe will be
 		
 		int bottomPipeX=topPipeX;
 		int bottomPipeY=topPipeHeight+170;//gives an opening between the pipes of 200
-		int bottomPipeHeight=height;//will make the pipe touch the bottom of the frame
-	}
+		int bottomPipeHeight=windowHeight+20;//will make the pipe touch the bottom of the frame
+		
+		//Generates a random location for a pipe
+		private int getRandomPipeHeight(){
+			Random ran = new Random();
+			int x = ran.nextInt(300) +50 ;
+			return x;
+		}
+		
+		//causes pipes to move, simulating movement by flappy
+		public void movePipes(){
+			this.topPipeX-=3;
+			this.bottomPipeX-=3;
+		
+		}
+	}//End class Pipes
 
 	public void paintComponent(Graphics G){
 		super.paintComponent(G);
 		paintFlappy(G);
-		paintPipes(G,P);
+		for(int i=0;i<100;i++)
+		{
+			paintPipes(G,PY[i]);
+		}
 	}
 	
 	//Outlines the pipe in black lines to give it a more defined look
@@ -129,10 +155,11 @@ public class FlappyBlock extends JPanel implements MouseListener {
 		outlinePipes(G,p);
 	
 	}
+	
 	//Draws flappy
 	private void paintFlappy(Graphics G){
 		G.setColor(blockyColor);
-		G.fillRect(blockyX,blockyY, 20, 20);
+		G.fillRect(blockyX,blockyY, blockyDimensions, blockyDimensions);
 	}
 	
 	//When mouse is clicked
