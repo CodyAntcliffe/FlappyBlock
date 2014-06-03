@@ -1,19 +1,7 @@
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 //Need collision detection
 
-import java.util.Random;
+import javax.swing.JFrame;
 
-import javax.swing.*;
 public class Game extends JFrame {
 
 	public Game(){
