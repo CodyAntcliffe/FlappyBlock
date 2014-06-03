@@ -7,7 +7,7 @@ public class Game extends JFrame {
 	public Game(){
 		add(new FlappyBlock());
 		
-		setTitle("FlappyBlock");
+		setTitle("Flappy Block");
 		pack();
 		setResizable(false);
 		setLocationRelativeTo(null);
