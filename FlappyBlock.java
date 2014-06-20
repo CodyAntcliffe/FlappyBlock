@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-//Need collision detection
 
 import java.util.Random;
 
@@ -60,12 +59,12 @@ public class FlappyBlock extends JPanel implements MouseListener {
 					PY[i].movePipes();
 			blockyY-=6;
 			timerKeep++;
-			collisionDetection();
+			collisionDetection();//Checks if collide with pipe
 			repaint();}
 			if(timerKeep==14){
 				flyUpTimer.stop();
 				flyDownTimer.start();
-				collisionDetection();
+				collisionDetection();//Checks if collide with pipe
 				
 				return;}
 		}
@@ -169,8 +168,7 @@ public class FlappyBlock extends JPanel implements MouseListener {
 		}
 
 		//Collision Detection
-		
-		public void collisionDetection(){
+		private void collisionDetection(){
 			
 			for(int i=0;i<100;i++){
 				//topPipe detection
@@ -180,6 +178,7 @@ public class FlappyBlock extends JPanel implements MouseListener {
 					flyUpTimer.stop();
 					flyDownTimer.stop();		
 				}
+				//bottomPipe detection
 				else if(blockyX+15>=PY[i].topPipeX&&blockyX+15<=PY[i].topPipeX+100 && blockyY>=PY[i].bottomPipeY-15 &&blockyY+15<=(PY[i].bottomPipeY-15+PY[i].bottomPipeHeight))
 				{
 					gameOver=true;
