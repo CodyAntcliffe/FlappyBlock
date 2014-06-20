@@ -1,4 +1,4 @@
-import java.awt.EventQueue;
+//Need collision detection
 
 import javax.swing.JFrame;
 import java.awt.Color;
@@ -19,7 +19,7 @@ public class Game extends JFrame {
 	public Game(){
 		add(new FlappyBlock());
 		
-		setTitle("FlappyBlock");
+		setTitle("Flappy Block");
 		pack();
 		setResizable(false);
 		setLocationRelativeTo(null);
