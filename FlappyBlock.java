@@ -35,12 +35,8 @@ public class FlappyBlock extends JPanel implements MouseListener {
 	Timer flyUpTimer=new Timer(10,up);
 	Timer flyDownTimer=new Timer(10,down);
 	int timerKeep=0;
-<<<<<<< HEAD
 
 	boolean gameOver=false; //checks if gameover
-=======
-	
->>>>>>> origin/master
 	//constructor
 	public FlappyBlock() {
 		//initializes the pipes
@@ -55,14 +51,7 @@ public class FlappyBlock extends JPanel implements MouseListener {
 		setFocusable(true);
 		setPreferredSize(new Dimension(windowWidth,windowHeight));
 	}
-<<<<<<< HEAD
 
-=======
-	
-	public void drawPipes(Pipes[] PZ){
-		
-	}
->>>>>>> origin/master
 	//causes flappy to ascend
 	public class flyUp implements ActionListener{
 		public void actionPerformed(ActionEvent event){
@@ -89,18 +78,12 @@ public class FlappyBlock extends JPanel implements MouseListener {
 						PY[i].movePipes();
 				blockyY+=6;
 				timerKeep++;
-<<<<<<< HEAD
 				collisionDetection();
-=======
->>>>>>> origin/master
 				repaint();}
 				if(timerKeep==0){
 					flyDownTimer.stop();
 					timerKeep=0;
-<<<<<<< HEAD
 					collisionDetection();
-=======
->>>>>>> origin/master
 					return;}
 			}
 		}
@@ -136,10 +119,7 @@ public class FlappyBlock extends JPanel implements MouseListener {
 		{
 			paintPipes(G,PY[i]);
 		}
-<<<<<<< HEAD
 		
-=======
->>>>>>> origin/master
 	}
 	
 	//Outlines the pipe in black lines to give it a more defined look
@@ -188,7 +168,6 @@ public class FlappyBlock extends JPanel implements MouseListener {
 				repaint();
 		}
 
-<<<<<<< HEAD
 		//Collision Detection
 		
 		public void collisionDetection(){
@@ -209,9 +188,6 @@ public class FlappyBlock extends JPanel implements MouseListener {
 				}
 			}	
 		}
-=======
-
->>>>>>> origin/master
 		//suppresses a warning
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
