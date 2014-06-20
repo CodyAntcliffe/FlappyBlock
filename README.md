@@ -9,7 +9,7 @@ A simple flappy bird clone written in Java during a couple of my lunch breaks at
 
 TO DO:
 <strike>Randomly generated pipes.</strike>
-Collission detection.
+<strike>Collission detection.</strike>
 Score keeper.
 Sprite animations.
 Title screen.
