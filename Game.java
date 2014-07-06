@@ -1,4 +1,3 @@
-//Need collision detection
 
 import javax.swing.JFrame;
 
