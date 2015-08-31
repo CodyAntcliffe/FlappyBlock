@@ -4,8 +4,7 @@ FlappyBlock
 Flappy Bird Clone
 
 
-A simple flappy bird clone written in Java during a couple of my lunch breaks at work.  Will use this as my basis to learn android app development.
-
+A simple flappy bird clone written in Java during a couple of my lunch breaks at work. 
 
 TO DO:
 <strike>Randomly generated pipes.</strike>
@@ -14,4 +13,4 @@ Score keeper.
 Sprite animations.
 Title screen.
 High score keeper.
-Android port(eventually).
+Android port(maybe...).
